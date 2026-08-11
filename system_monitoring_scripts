@@ -1,1 +1,67 @@
+#!/bin/bash
+# Essence of script is to Monitor System function
 
+# Function for monitoring CPU usage
+
+# cpu_usage() - Creates a function called cpu_usage
+# () the parenthesis tells bash this (cpu_usage()) is a function, you call it without using the parenthesis
+# {} run every cmd from beginning of curly bracket to the end of curly bracket
+# echo prints out CPU Usage
+# run top cmd to show real time system function display, 
+# -b changes output to normal text output
+# -n1 tell top to run interaction only once and the stop, instead of constantly refreshing
+# grep “Cpu(s)” filters for only line containing Cpu(s)
+# echo without any statement following means print a blank line, making output easier to read
+
+cpu_usage() { 
+echo "===== CPU Usage =====" 			
+top -bn1 | grep "Cpu(s)" 			
+echo 
+}
+
+# Function provides details of Memory usage 
+memory_usage() { 
+echo "===== Memory Usage =====" 
+free -h 
+echo 
+}
+
+# Function provides Disk usage by each running process
+disk_usage() { 
+echo "===== Disk Usage =====" 
+df -h 
+echo 
+}
+
+# Function to get Network statistics 
+network_stats() { 
+echo "===== Network Statistics =====" 
+ip -s link 
+echo 
+}
+
+# Function to get System uptime (how long the system has been running)
+system_uptime() { 
+echo "===== System Uptime =====" 
+uptime 
+echo 
+}
+
+# Main Program below: - is the function call section
+# echo “=================” prints a line separator, makes output easier to read
+# echo “ Linux System Monitoring Tool” displays the title
+# bash runs the cpu function
+# bash runs memory checking function
+# bash runs disk usage function
+# bash runs network monitoring function
+# bash runs system uptime function
+
+# Main Program 
+echo "======================================" 
+echo " Linux System Monitoring Tool" 
+echo "======================================" 
+cpu_usage 
+memory_usage 
+disk_usage 
+network_stats 
+system_uptime
